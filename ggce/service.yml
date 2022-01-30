@@ -10,8 +10,8 @@ spec:
     app: ggce-api
   ports:
     - port: 8888
-      nodePort: 8888
       targetPort: 8080
+      nodePort: 30000
       protocol: TCP
 ---
 apiVersion: v1
