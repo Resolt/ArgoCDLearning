@@ -5,7 +5,7 @@ metadata:
   name: ggce-api
   namespace: ggce-ns
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: ggce-api
   ports:
