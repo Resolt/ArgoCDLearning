@@ -11,7 +11,7 @@ spec:
     targetRevision: HEAD
     path: ggce
   destination:
-    server: https://kubernets.default.svc
+    server: https://kubernetes.default.svc
     namespace: ggce-ns
   syncPolicy:
     syncOptions:
