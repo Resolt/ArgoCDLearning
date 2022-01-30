@@ -9,14 +9,14 @@ spec:
   rules:
   - http:
       paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: ggce-api
-              port:
-                number:
-                  valueFrom:
-                    configMapKeyRef:
-                      name: ggce-config
-                      key: PORT
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ggce-api
+            port:
+              number:
+                valueFrom:
+                  configMapKeyRef:
+                    name: ggce-config
+                    key: PORT
