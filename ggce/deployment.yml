@@ -21,7 +21,7 @@ spec:
         - containerPort: 8080
         envFrom:
         - configMapRef:
-          name: ggce-config
+            name: ggce-config
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -32,6 +32,7 @@ spec:
   selector:
     matchLabels:
       app: ggce-db
+  serviceName: ggce-db
   replicas: 1
   template:
     metadata:
@@ -41,7 +42,8 @@ spec:
       containers:
       - name: ggce-db
         image: postgres
-        ports: 5432
+        ports:
+          - 5432
         env:
           - name: POSTGRES_USER
             valueFrom:
