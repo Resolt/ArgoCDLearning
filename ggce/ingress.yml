@@ -8,15 +8,15 @@ spec:
   ingressClassName: ggce-ingress
   rules:
   - http:
-    paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: ggce-api
-            port:
-              number:
-                valueFrom:
-                  configMapKeyRef:
-                    name: ggce-config
-                    key: PORT
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: ggce-api
+              port:
+                number:
+                  valueFrom:
+                    configMapKeyRef:
+                      name: ggce-config
+                      key: PORT
