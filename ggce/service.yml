@@ -8,17 +8,9 @@ spec:
   selector:
     app: ggce-api
   ports:
-    - port:
-        valueFrom:
-          configMapKeyRef:
-            name: ggce-config
-            key: PORT
+    - port: 8080
       protocol: TCP
-      targetPort:
-        valueFrom:
-          configMapKeyRef:
-            name: ggce-config
-            key: PORT
+      targetPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -29,14 +21,6 @@ spec:
   selector:
     app: ggce-db
   ports:
-    - port:
-        valueFrom:
-          configMapKeyRef:
-            name: ggce-config
-            key: DB_PORT
+    - port: 5432
       protocol: TCP
-      targetPort:
-        valueFrom:
-          configMapKeyRef:
-            name: ggce-config
-            key: DB_PORT
+      targetPort: 5432

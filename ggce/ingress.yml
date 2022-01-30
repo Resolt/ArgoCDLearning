@@ -14,9 +14,4 @@ spec:
         backend:
           service:
             name: ggce-api
-            port:
-              number:
-                valueFrom:
-                  configMapKeyRef:
-                    name: ggce-config
-                    key: PORT
+            port: 8080

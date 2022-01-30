@@ -11,18 +11,14 @@ spec:
   replicas: 2
   template:
     metadata:
-      matchLabels:
+      labels:
         app: ggce-api
     spec:
       containers:
       - name: ggce-api
         image: 192.168.0.30:5000/ggce:latest
         ports:
-        - containerPort:
-          valueFrom:
-            configMapKeyRef:
-              name: ggce-config
-              key: PORT
+        - containerPort: 8080
         envFrom:
         - configMapRef:
           name: ggce-config
@@ -39,18 +35,13 @@ spec:
   replicas: 1
   template:
     metadata:
-      matchLabels:
+      labels:
         app: ggce-db
     spec:
       containers:
       - name: ggce-db
         image: postgres
-        ports:
-        - containerPort:
-          valueFrom:
-            configMapKeyRef:
-              name: ggce-config
-              key: DB_PORT
+        ports: 5432
         env:
           - name: POSTGRES_USER
             valueFrom:
