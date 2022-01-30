@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: ggce-api
-        image: 192.168.0.30:5000/ggce:latest
+        image: pdmm/ggce:14
         ports:
         - containerPort: 8080
         envFrom:
