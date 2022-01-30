@@ -8,7 +8,7 @@ data:
   PORT: "8080"
   HOST: "0.0.0.0"
   GIN_MODE: "release"
-  DB_HOST: "ggce-db.ggce-ns.svc.cluser.local"
+  DB_HOST: "ggce-db.ggce-ns.svc.cluster.local"
   DB_NAME: "ggce"
   DB_USER: "ggce"
   DB_PASS: "ggce"
