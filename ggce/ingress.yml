@@ -9,10 +9,8 @@ spec:
   rules:
   - http:
       paths:
-      - path: /
+      - path: /ggce
         pathType: Prefix
         backend:
-          service:
-            name: ggce-api
-            port:
-              number: 8080
+          serviceName: ggce-api
+          servicePort: 8080
