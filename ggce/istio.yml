@@ -29,6 +29,8 @@ spec:
   - match:
     - uri:
         prefix: /ggce
+    rewrite:
+      uri: /ggce
     route:
     - destination:
         port:
