@@ -30,7 +30,7 @@ spec:
     - uri:
         prefix: /ggce
     rewrite:
-      uri: /
+      uri: ""
     route:
     - destination:
         port:
