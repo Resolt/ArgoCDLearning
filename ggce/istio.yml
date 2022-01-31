@@ -13,7 +13,7 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "ggce.local"
+    - "*"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -22,15 +22,13 @@ metadata:
   namespace: ggce-ns
 spec:
   hosts:
-  - "ggce.local"
+  - "*"
   gateways:
   - ggce-gateway
   http:
   - match:
     - uri:
-        prefix: /
-    # - uri:
-    #     prefix: /delay
+        prefix: /ggce
     route:
     - destination:
         port:
