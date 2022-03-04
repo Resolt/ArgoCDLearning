@@ -1,0 +1,63 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ggce-api
+  namespace: ggce-ns
+spec:
+  selector:
+    matchLabels:
+      app: ggce-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: ggce-api
+    spec:
+      containers:
+      - name: ggce-api
+        image: pdmm/ggce:15
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: ggce-config
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ggce-db
+  namespace: ggce-ns
+spec:
+  selector:
+    matchLabels:
+      app: ggce-db
+  serviceName: ggce-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ggce-db
+    spec:
+      containers:
+      - name: ggce-db
+        image: postgres
+        ports:
+          - containerPort: 5432
+        env:
+          - name: POSTGRES_USER
+            valueFrom:
+              configMapKeyRef:
+                name: ggce-config
+                key: DB_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: ggce-config
+                key: DB_PASS
+          - name: POSTGRES_DB
+            valueFrom:
+              configMapKeyRef:
+                name: ggce-config
+                key: DB_NAME
+
