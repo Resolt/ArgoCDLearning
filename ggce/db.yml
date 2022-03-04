@@ -1,28 +1,4 @@
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: ggce-api
-  namespace: ggce-ns
-spec:
-  selector:
-    matchLabels:
-      app: ggce-api
-  replicas: 2
-  template:
-    metadata:
-      labels:
-        app: ggce-api
-    spec:
-      containers:
-      - name: ggce-api
-        image: pdmm/ggce:15
-        ports:
-        - containerPort: 8080
-        envFrom:
-        - configMapRef:
-            name: ggce-config
----
+--- # deployment
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -61,3 +37,16 @@ spec:
                 name: ggce-config
                 key: DB_NAME
 
+--- # service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ggce-db
+  namespace: ggce-ns
+spec:
+  selector:
+    app: ggce-db
+  ports:
+    - port: 5432
+      targetPort: 5432
+      protocol: TCP

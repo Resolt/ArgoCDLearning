@@ -1,0 +1,81 @@
+--- # deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ggce-api
+  namespace: ggce-ns
+spec:
+  selector:
+    matchLabels:
+      app: ggce-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: ggce-api
+    spec:
+      containers:
+      - name: ggce-api
+        image: pdmm/ggce:15
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: ggce-config
+
+--- # service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ggce-api
+  namespace: ggce-ns
+spec:
+  type: LoadBalancer
+  selector:
+    app: ggce-api
+  ports:
+    - port: 8888
+      targetPort: 8080
+      protocol: TCP
+
+--- # virtual service
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: ggce-vs
+  namespace: ggce-ns
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - ggce-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /ggce/
+    - uri:
+        prefix: /ggce
+    rewrite:
+      uri: /
+    route:
+    - destination:
+        port:
+          number: 8888
+        host: ggce-api
+
+--- # ingress gateway
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: ggce-gateway
+  namespace: ggce-ns
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
