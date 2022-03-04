@@ -1,0 +1,135 @@
+--- # namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ggce-ns
+  labels:
+    istio-injection: enabled
+
+--- # configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ggce-config
+  namespace: ggce-ns
+data:
+  PORT: "8080"
+  HOST: "0.0.0.0"
+  GIN_MODE: "release"
+  DB_HOST: "ggce-db-svc.ggce-ns.svc.cluster.local"
+  DB_NAME: "ggce"
+  DB_USER: "ggce"
+  DB_PASS: "ggce"
+  DB_PORT: "5432"
+
+
+# DB
+
+--- # deployment
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ggce-db-deploy
+  namespace: ggce-ns
+spec:
+  selector:
+    matchLabels:
+      app: ggce-db
+  serviceName: ggce-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ggce-db
+    spec:
+      containers:
+      - name: ggce-db
+        image: postgres
+        ports:
+          - containerPort: 5432
+        env:
+          - name: POSTGRES_USER
+            valueFrom:
+              configMapKeyRef:
+                name: ggce-config
+                key: DB_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: ggce-config
+                key: DB_PASS
+          - name: POSTGRES_DB
+            valueFrom:
+              configMapKeyRef:
+                name: ggce-config
+                key: DB_NAME
+
+--- # service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ggce-db-svc
+  namespace: ggce-ns
+spec:
+  selector:
+    app: ggce-db
+  ports:
+    - port: 5432
+      targetPort: 5432
+      protocol: TCP
+
+
+# API
+
+--- # deployment
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ggce-db-deploy
+  namespace: ggce-ns
+spec:
+  selector:
+    matchLabels:
+      app: ggce-db
+  serviceName: ggce-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ggce-db
+    spec:
+      containers:
+      - name: ggce-db
+        image: postgres
+        ports:
+          - containerPort: 5432
+        env:
+          - name: POSTGRES_USER
+            valueFrom:
+              configMapKeyRef:
+                name: ggce-config
+                key: DB_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: ggce-config
+                key: DB_PASS
+          - name: POSTGRES_DB
+            valueFrom:
+              configMapKeyRef:
+                name: ggce-config
+                key: DB_NAME
+
+--- # service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ggce-db-svc
+  namespace: ggce-ns
+spec:
+  selector:
+    app: ggce-db
+  ports:
+    - port: 5432
+      targetPort: 5432
+      protocol: TCP
