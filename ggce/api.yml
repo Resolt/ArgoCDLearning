@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ggce-api
+  name: ggce-api-deploy
   namespace: ggce-ns
 spec:
   selector:
@@ -27,7 +27,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ggce-api
+  name: ggce-api-svc
   namespace: ggce-ns
 spec:
   type: LoadBalancer
@@ -42,7 +42,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: ggce-vs
+  name: ggce-api-vs
   namespace: ggce-ns
 spec:
   hosts:
@@ -61,7 +61,7 @@ spec:
     - destination:
         port:
           number: 8888
-        host: ggce-api
+        host: ggce-api-svc
 
 --- # ingress gateway
 apiVersion: networking.istio.io/v1alpha3
