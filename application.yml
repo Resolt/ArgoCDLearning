@@ -14,8 +14,8 @@ spec:
     server: https://kubernetes.default.svc
     namespace: ggce-ns
   syncPolicy:
-    # syncOptions:
-    # - CreateNamespace=true
+    syncOptions:
+    - CreateNamespace=true
     automated:
       selfHeal: true
       prune: true
