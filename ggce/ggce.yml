@@ -113,7 +113,7 @@ metadata:
   name: ggce-api
   namespace: ggce-ns
 spec:
-  type: LoadBalancer
+  # type: LoadBalancer
   selector:
     app: ggce-api
   ports:
