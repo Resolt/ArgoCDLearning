@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: pdmm/ggce:16
+        image: pdmm/ggce:17
         ports:
         - containerPort: 8080
         envFrom:
