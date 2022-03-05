@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ggce-api
-  namespace: ggce-ns
+  name: api
+  namespace: ggce
 spec:
   selector:
-    app: ggce-api
+    app: api
   ports:
     - port: 8888
       targetPort: 8080
@@ -15,11 +15,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ggce-db
-  namespace: ggce-ns
+  name: db
+  namespace: ggce
 spec:
   selector:
-    app: ggce-db
+    app: db
   ports:
     - port: 5432
       targetPort: 5432

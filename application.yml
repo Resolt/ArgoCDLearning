@@ -12,7 +12,7 @@ spec:
     path: ggce
   destination:
     server: https://kubernetes.default.svc
-    namespace: ggce-ns
+    namespace: ggce
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
