@@ -39,7 +39,7 @@ spec:
           number: 8888
         host: api
 ---
-apiVersion: networking.istio.io/v1beta1
+apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: db
