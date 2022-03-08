@@ -38,3 +38,17 @@ spec:
         port:
           number: 8888
         host: api
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: db
+spec:
+  host: db.ggce.svc.cluster.local
+  trafficPolicy:
+    connectionPool:
+      tcp:
+        connectionTimeout: 0ms
+        # tcpKeepalive:
+        #   time: 10000h
+        #   interval: 60s
