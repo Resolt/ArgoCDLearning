@@ -48,7 +48,7 @@ spec:
   trafficPolicy:
     connectionPool:
       tcp:
-        connectionTimeout: 1s
+        connectionTimeout: 1000ms
         tcpKeepalive:
           time: 30m
           interval: 60s
