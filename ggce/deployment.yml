@@ -17,7 +17,6 @@ spec:
       containers:
       - name: api
         image: pdmm/ggce:17
-        lifetime: 1h
         ports:
         - containerPort: 8080
         envFrom:
