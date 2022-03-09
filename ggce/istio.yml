@@ -50,6 +50,6 @@ spec:
     connectionPool:
       tcp:
         connectTimeout: 1000ms
-        # tcpKeepalive:
-        #   time: 30m
-        #   interval: 60s
+        tcpKeepalive:
+          time: 30m
+          interval: 60s
