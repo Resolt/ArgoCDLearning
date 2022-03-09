@@ -49,7 +49,7 @@ spec:
   trafficPolicy:
     connectionPool:
       tcp:
-        connectTimeout: 1000ms
+        connectTimeout: 1s
         tcpKeepalive:
-          time: 1800s
-          interval: 60s
+          time: 30m
+          interval: 1m
