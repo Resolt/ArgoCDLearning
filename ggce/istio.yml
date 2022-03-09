@@ -51,5 +51,5 @@ spec:
       tcp:
         connectTimeout: 1000ms
         tcpKeepalive:
-          time: 30m
+          time: 1800s
           interval: 60s
