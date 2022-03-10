@@ -18,7 +18,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: virtual-service
+  name: api-virtual-service
   namespace: ggce
 spec:
   hosts:
@@ -38,3 +38,18 @@ spec:
         port:
           number: 8888
         host: api
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: db-service-entry
+  namespace: ggce
+spec:
+  hosts:
+  - db.ggce.svc.cluster.local
+  location: MESH_INTERNAL
+  ports:
+  - name: db
+    number: 5432
+    protocol: TCP
+  resolution: DNS
