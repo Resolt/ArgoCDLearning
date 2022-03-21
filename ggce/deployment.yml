@@ -1,37 +1,4 @@
 ---
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: api
-  namespace: ggce
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: api
-    namespace: ggce
-  minReplicas: 1
-  maxReplicas: 10
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 30
-status:
-  observedGeneration: 1
-  lastScaleTime: 1m
-  currentReplicas: 1
-  desiredReplicas: 1
-  currentMetrics:
-  - type: Resource
-    resource:
-      name: cpu
-      current:
-        averageUtilization: 0
-        averageValue: 0
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -41,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: api
-  # replicas: 1
+  replicas: 1
   template:
     metadata:
       labels:
