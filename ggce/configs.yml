@@ -29,8 +29,6 @@ metadata:
 data:
   enabled_plugins: |
       [rabbitmq_management,rabbitmq_peer_discovery_k8s].
-  # enabled_plugins: |
-  #   [rabbitmq_management].
   # rabbitmq.conf: |
   #     ## Cluster formation. See https://www.rabbitmq.com/cluster-formation.html to learn more.
   #     cluster_formation.peer_discovery_backend  = rabbit_peer_discovery_k8s
@@ -57,3 +55,5 @@ data:
   #     ## credentials instead.
   #     ## Learn more at https://www.rabbitmq.com/access-control.html#loopback-users
   #     loopback_users.guest = false
+  rabbitmq.conf: |
+      loopback_users.guest = false
