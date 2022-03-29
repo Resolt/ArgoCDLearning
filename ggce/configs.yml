@@ -17,8 +17,9 @@ data:
   AMQP_PORT: "5672"
   AMQP_USER: "guest"
   AMQP_PASS: "guest"
-  AMQP_EXCH: "ggce"
+  AMQP_EXCHANGE: "ggce"
   AMQP_QUEUE: "ggce"
+  AMQP_VHOST: ""
 ---
 apiVersion: v1
 kind: ConfigMap
