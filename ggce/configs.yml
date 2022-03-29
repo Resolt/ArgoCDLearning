@@ -26,10 +26,10 @@ metadata:
   name: rabbitmq-config
   namespace: ggce
 data:
-  # enabled_plugins: |
-  #     [rabbitmq_management,rabbitmq_peer_discovery_k8s].
   enabled_plugins: |
-    [rabbitmq_management].
+      [rabbitmq_management,rabbitmq_peer_discovery_k8s].
+  # enabled_plugins: |
+  #   [rabbitmq_management].
   # rabbitmq.conf: |
   #     ## Cluster formation. See https://www.rabbitmq.com/cluster-formation.html to learn more.
   #     cluster_formation.peer_discovery_backend  = rabbit_peer_discovery_k8s
