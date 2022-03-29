@@ -32,7 +32,7 @@ spec:
       - name: api
         image: pdmm/ggce:25
         ports:
-        - containerPort: 8080
+        - containerPort: 8888
         resources:
           requests:
             memory: 300Mi
