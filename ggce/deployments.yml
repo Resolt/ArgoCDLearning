@@ -179,7 +179,7 @@ spec:
           configMap:
             name: rabbitmq-config
             items:
-            # - key: rabbitmq.conf
-            #   path: rabbitmq.conf
+            - key: rabbitmq.conf
+              path: rabbitmq.conf
             - key: enabled_plugins
               path: enabled_plugins
