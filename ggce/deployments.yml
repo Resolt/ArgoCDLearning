@@ -167,7 +167,7 @@ spec:
             value: "true"
           # See a note on cluster_formation.k8s.address_type in the config file section
           - name: K8S_SERVICE_NAME
-            value: rabbitmq
+            value: rmq
           - name: RABBITMQ_NODENAME
             value: rabbit@$(MY_POD_NAME).$(K8S_SERVICE_NAME).$(MY_POD_NAMESPACE).svc.cluster.local
           - name: K8S_HOSTNAME_SUFFIX
