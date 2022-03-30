@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: pdmm/ggce:31
+        image: pdmm/ggce:32
         ports:
         - containerPort: 8888
         resources:
