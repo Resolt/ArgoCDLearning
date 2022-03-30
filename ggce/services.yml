@@ -28,11 +28,11 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: rabbitmq
+  name: rmq
   namespace: ggce
 spec:
   selector:
-    app: rabbitmq
+    app: rmq
   ports:
    - name: http
      protocol: TCP

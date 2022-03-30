@@ -13,7 +13,7 @@ data:
   DB_USER: "ggce"
   DB_PASS: "ggce"
   DB_PORT: "5432"
-  AMQP_HOST: "rabbitmq.ggce.svc.cluster.local"
+  AMQP_HOST: "rmq.ggce.svc.cluster.local"
   AMQP_PORT: "5672"
   AMQP_USER: "guest"
   AMQP_PASS: "guest"
