@@ -216,7 +216,7 @@ spec:
     spec:
       containers:
       - name: gac
-        image: pdmm/gac:2
+        image: pdmm/gac:3
         resources:
           requests:
             memory: 100Mi
@@ -232,3 +232,5 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.name
+          - name: NTASKS
+            value: 8
