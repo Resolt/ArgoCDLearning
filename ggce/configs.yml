@@ -20,6 +20,7 @@ data:
   AMQP_EXCHANGE: "ggce"
   AMQP_QUEUE: "ggce"
   AMQP_VHOST: ""
+  NTASKS: "8"
 ---
 apiVersion: v1
 kind: ConfigMap

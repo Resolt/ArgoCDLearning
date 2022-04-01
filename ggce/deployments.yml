@@ -232,5 +232,3 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.name
-          - name: NTASKS
-            value: "8"
