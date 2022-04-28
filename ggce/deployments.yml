@@ -216,7 +216,7 @@ spec:
     spec:
       containers:
       - name: gac
-        image: pdmm/gac:3
+        image: pdmm/gac:4
         resources:
           requests:
             memory: 100Mi
