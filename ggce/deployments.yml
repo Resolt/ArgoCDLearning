@@ -107,20 +107,20 @@ spec:
     - ReadWriteMany
   hostPath:
     path: "/mnt/data/rmq"
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  labels:
-    app: rmq
-  name: rmq-pv-claim
-spec:
-  storageClassName: default
-  accessModes:
-  - ReadWriteMany
-  resources:
-    requests:
-      storage: 200M
+# ---
+# kind: PersistentVolumeClaim
+# apiVersion: v1
+# metadata:
+#   labels:
+#     app: rmq
+#   name: rmq-pv-claim
+# spec:
+#   storageClassName: default
+#   accessModes:
+#   - ReadWriteMany
+#   resources:
+#     requests:
+#       storage: 200M
 ---
 apiVersion: apps/v1
 # See the Prerequisites section of https://www.rabbitmq.com/cluster-formation.html#peer-discovery-k8s.
@@ -147,7 +147,7 @@ spec:
         volumeMounts:
           - name: config-volume
             mountPath: /etc/rabbitmq
-          - name: rmq-pv-claim
+          - name: redis-data
             mountPath: /var/lib/rabbitmq
         # Learn more about what ports various protocols use
         # at https://www.rabbitmq.com/networking.html#ports
@@ -221,7 +221,14 @@ spec:
               path: rabbitmq.conf
             - key: enabled_plugins
               path: enabled_plugins
-
+  volumeClaimTemplates:
+  - metadata:
+      name: redis-data
+    spec:
+      accessModes: [ "ReadWriteMany" ]
+      resources:
+        requests:
+          storage: 200M
 
 # CONSUMER
 ---
