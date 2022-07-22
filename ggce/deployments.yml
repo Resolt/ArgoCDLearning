@@ -93,7 +93,7 @@ spec:
 
 # RABBITMQ
 ---
-kind: PersistenVolume
+kind: PersistentVolume
 apiVersion: v1
 metadata:
   name: rmq-pv
@@ -108,7 +108,7 @@ spec:
   hostPath:
     path: "/mnt/data/rmq"
 ---
-kind: PersistenVolumeClaim
+kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   labels:
