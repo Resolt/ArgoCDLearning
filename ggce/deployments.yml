@@ -129,7 +129,7 @@ spec:
         volumeMounts:
           - name: config-volume
             mountPath: /etc/rabbitmq
-          - name: redis-data
+          - name: rmq-data
             mountPath: /var/lib/rabbitmq
         # Learn more about what ports various protocols use
         # at https://www.rabbitmq.com/networking.html#ports
@@ -205,7 +205,7 @@ spec:
               path: enabled_plugins
   volumeClaimTemplates:
   - metadata:
-      name: redis-data
+      name: rmq-data
     spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
