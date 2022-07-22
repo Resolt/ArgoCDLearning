@@ -92,21 +92,21 @@ spec:
                 key: DB_NAME
 
 # RABBITMQ
----
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-  name: rmq-pv
-  labels:
-    type: local-storage
-spec:
-  storageClassName: default
-  capacity:
-    storage: 200M
-  accessModes:
-    - ReadWriteMany
-  hostPath:
-    path: "/mnt/data/rmq"
+# ---
+# kind: PersistentVolume
+# apiVersion: v1
+# metadata:
+#   name: rmq-pv
+#   labels:
+#     type: local-storage
+# spec:
+#   storageClassName: default
+#   capacity:
+#     storage: 200M
+#   accessModes:
+#     - ReadWriteMany
+#   hostPath:
+#     path: "/mnt/data/rmq"
 # ---
 # kind: PersistentVolumeClaim
 # apiVersion: v1
@@ -225,7 +225,7 @@ spec:
   - metadata:
       name: redis-data
     spec:
-      accessModes: [ "ReadWriteMany" ]
+      accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
           storage: 200M
