@@ -74,6 +74,9 @@ spec:
           limits:
             memory: 1024Mi
             cpu: 1000m
+        volumeMounts:
+        - name: postgres-data
+          mountPath: /var/lib/postgresql/data
         env:
           - name: POSTGRES_USER
             valueFrom:
@@ -90,37 +93,16 @@ spec:
               configMapKeyRef:
                 name: shared-config
                 key: DB_NAME
+  volumeClaimTemplates:
+  - metadata:
+      name: postgres-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 200M
 
 # RABBITMQ
-# ---
-# kind: PersistentVolume
-# apiVersion: v1
-# metadata:
-#   name: rmq-pv
-#   labels:
-#     type: local-storage
-# spec:
-#   storageClassName: default
-#   capacity:
-#     storage: 200M
-#   accessModes:
-#     - ReadWriteMany
-#   hostPath:
-#     path: "/mnt/data/rmq"
-# ---
-# kind: PersistentVolumeClaim
-# apiVersion: v1
-# metadata:
-#   labels:
-#     app: rmq
-#   name: rmq-pv-claim
-# spec:
-#   storageClassName: default
-#   accessModes:
-#   - ReadWriteMany
-#   resources:
-#     requests:
-#       storage: 200M
 ---
 apiVersion: apps/v1
 # See the Prerequisites section of https://www.rabbitmq.com/cluster-formation.html#peer-discovery-k8s.
